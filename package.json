@@ -1,0 +1,15 @@
+{
+  "name": "apps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "workspaces": {
+    "packages": ["packages/*"]
+  },
+  "scripts": {
+    "editor:dev": "yarn workspace monaco-editor serve"
+  },
+  "repository": "https://github.com/benyueer/apps.git",
+  "author": "benyueer <347201906@qq.com>",
+  "license": "MIT",
+  "private": true
+}
