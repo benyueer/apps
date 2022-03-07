@@ -1,13 +1,17 @@
 import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
-  setup() {
+  props: ['data'],
+  setup(props) {
     const state = reactive({
-      value: ''
+      value: props.data.value,
     })
+    console.log(props.data)
+    // if (props.data.fetchData.use) {
+
+    // }
     return () => (
       <div>
-        {state.value}
         <input v-model={state.value} type="text" />
       </div>
     )

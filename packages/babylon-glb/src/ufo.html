@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <babylon id="babylon" model="https://models.babylonjs.com/ufo.glb"></babylon>
+
+  <script src="https://cdn.babylonjs.com/viewer/babylon.viewer.js"></script>
+  <script>
+
+    BabylonViewer.viewerManager.getViewerPromiseById('babylon').then(function (viewer) {
+      console.log(viewer)
+      viewer.onSceneInitObservable.add(function (scene) {
+        console.log(scene)
+        var highlighted = false
+        var hl = new BABYLON.HighlightLayer("hl1", scene);
+
+        const highlight = (mesh) => {
+          BABYLON.MeshBuilder.CreatePlane("plane", {height:2, width: 1, sideOrientation: BABYLON.Mesh.DOUBLESIDE});
+          console.log(mesh)
+          if (highlighted) {
+            highlighted = false
+            hl.removeMesh(mesh)
+          }
+          else {
+            highlighted = true
+            hl.addMesh(mesh, BABYLON.Color3.Blue());
+          }
+        }
+        scene.onPointerObservable.add((pointerInfo) => {
+          switch (pointerInfo.type) {
+            case BABYLON.PointerEventTypes.POINTERDOWN:
+              if (pointerInfo.pickInfo.hit) {
+                // pointerDown(pointerInfo.pickInfo.pickedMesh)
+                highlight(pointerInfo.pickInfo.pickedMesh)
+              }
+              break;
+          }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>

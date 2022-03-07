@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    #fullpage {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background-color: #fff;
+      z-index: 100;
+    }
+
+    .page {
+      width: 100%;
+      height: 100vh;
+      line-height: 100vh;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .red {
+      background-color: rgb(255, 131, 131);
+    }
+
+    .yellow {
+      background-color: rgb(255, 255, 149);
+    }
+
+    .blue {
+      background-color: rgb(145, 145, 255);
+    }
+
+    .green {
+      background-color: rgb(157, 255, 157);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="fullpage">
+    <header>header</header>
+    <div id="main">
+      <div class="page red">page1
+      </div>
+      <div class="page yellow">page2</div>
+      <div class="page green">page3</div>
+      <div class="page blue">page4</div>
+    </div>
+  </div>
+  <script>
+    const main = document.querySelector('#main')
+    let pageIndex = 0
+    let rending = false
+    let animation = null
+    document.addEventListener('mousewheel', (e) => {
+      if (rending) {
+        // animation.
+        return
+      }
+      console.log(pageIndex)
+      rending = true
+      if (e.wheelDelta > 0 && pageIndex > 0) {
+        // 向上滚动
+        pageIndex--
+      }
+      else if (e.wheelDelta < 0 && pageIndex < 3) {
+        // 向下滚动
+        pageIndex++
+      }
+      animation = main.animate({ transform: `translateY(${pageIndex * -100}vh)` }, { duration: 1000, fill: 'forwards', easing: 'ease-in-out' })
+      animation.onfinish = () => {
+        rending = false
+        console.log('animation finish')
+      }
+    })
+
+    const audio = document.querySelector('audio')
+    console.log(audio)
+    setTimeout(() => {
+      loadWarnAudio()
+    }, 2000)
+
+    function loadWarnAudio() {
+      const audio = document.createElement('audio')
+      audio.src = './12404.wav'
+      audio.play()
+    }
+  </script>
+</body>
+
+</html>
