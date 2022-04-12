@@ -8,6 +8,7 @@
 <script>
 import mymonacoeditor from './components/monaco-editor.jsx'
 /// import MonacoEditor from 'vue-monaco'
+import Vue from 'vue'
 export default {
   name: 'App',
   components: {
@@ -18,6 +19,16 @@ export default {
     return {
       code: 'const noop = () => {}'
     }
+  },
+  mounted() {
+    const vueCom = Vue.extend({
+      template: `<div>123</div>`
+    })
+    console.log(vueCom)
+
+    const nodeCon = new vueCom()
+    nodeCon.$mount('#app')
+    console.log(nodeCon)
   },
   methods: {
     onChange(value) {

@@ -1,6 +1,7 @@
 const MonacoEditorWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
+  runtimeCompiler: true,
   // ...
   // chainWebpack: config => {
   //   config.plugins.push(new MonacoEditorWebpackPlugin({

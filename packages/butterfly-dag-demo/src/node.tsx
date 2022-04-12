@@ -7,23 +7,25 @@ import { CusHelloWorld } from './utils/defineElement';
 class BaseNode extends Node {
   constructor(opts: any) {
     super(opts);
+    console.log(opts);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     this.options = opts;
   }
   draw = (opts: any) => {
+    console.log(opts);
 
 
-    // const elememt = new CusHelloWorld({ opts })
-    //    $(elememt).attr('id', opts.id)
-    //   .css('top', opts.top + 'px')
-    //   .css('left', opts.left + 'px')
-    //   .css('width', 82 + 'px')
-    //   .css('height', 82 + 'px')
-    //   .addClass(opts.options.className);
-    // console.log(elememt);
+    const elememt = new CusHelloWorld({ opts })
+       $(elememt).attr('id', opts.id)
+      .css('top', opts.top + 'px')
+      .css('left', opts.left + 'px')
+      .css('width', 82 + 'px')
+      .css('height', 82 + 'px')
+      .addClass(opts.options.className);
+    console.log(elememt);
 
-    // return elememt;
+    return elememt;
 
 
     const container = $('<div class="login-base-node"></div>')
