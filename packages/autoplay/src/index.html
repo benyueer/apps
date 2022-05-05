@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    .page {
+      width: 100%;
+      height: 100vh;
+      border: 1px solid red;
+    }
+
+  </style>
 </head>
+
 <body>
-  <video id="video1" src="../public//normal video.mp4" muted="muted" loop="loop" style="width: 100%; height: 100;"></video>
+  <div class="page">
+    <video id="video1" muted="muted" preload="none" loop="loop" src="http://localhost:12345/10-fragmented.mp4"
+      style="width: 100%; height: 100;"></video>
+  </div>
+  <div class="page">
+    <video id="video2" muted="muted" preload="none" loop="loop" src="http://localhost:12345/10-fragmented.mp4"
+      style="width: 100%; height: 100;"></video>
+  </div>
   <script>
-    var video = document.getElementById('video1');
-    video.play();
+    const cb = (entries) => {
+      // console.log(entries);
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.play();
+        } else {
+          entry.target.pause();
+        }
+      });
+    }
+    const io = new IntersectionObserver(cb)
+    io.observe(document.querySelector('#video1'))
+    io.observe(document.querySelector('#video2'))
   </script>
 </body>
+
 </html>
