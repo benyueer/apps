@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       count: 0,
-      foo: 1
+      foo: 1,
     }
   },
   computed: {
