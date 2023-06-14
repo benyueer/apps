@@ -53,6 +53,8 @@ export default {
       },
       // readOnly: true // 只读
     })
+
+    console.log(this)
   },
 
   methods: {

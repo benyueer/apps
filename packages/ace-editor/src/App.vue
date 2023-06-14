@@ -4,6 +4,8 @@
     hello{{msg}}
     <button @click="() => count++">{{count}}</button>
     <button @click="() => foo++">foo add{{foo}}</button>
+    <show-props :msg="foo" />
+    <with-compiler />
   </div>
 </template>
 
@@ -11,10 +13,12 @@
 import ace from './components/ace-editor.jsx'
 // import Vue from 'vue'
 // import HelloWorld from './components/HelloWorld.vue'
+import showProps from './components/showProps.jsx'
+import withCompiler from './components/withCompiler'
 export default {
   name: 'App',
   components: {
-    ace
+    ace, showProps, withCompiler
   //   HelloWorld
   },
   data() {
